@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <style>
+        html, body {
+            height: 100%;
+            /* width: 100%;  */
+            margin: 0;
+        }
+        .container {
+            
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100%;
+            justify-content: flex-start;
+            align-items: center;
+            background-color: rosybrown;
+            padding-top: 50px;
+            
+        }
+        input {
+            border: 2px solid black;
+            margin-right: 40px;
+            margin-top: 70px;
+            padding: 10px;
+            width: 400px;
+            font-size: 20px;
+            border-radius: 6px;
+            background-color:rgba(128, 128, 128, 0.289);
+            color: white;
+        }
+        .done {
+            text-decoration: line-through;
+            background-color: green;
+        }
+        #todo-list {
+            margin-right: 100px;
+            font-size: x-large;
+            width: 100%;
+            max-width: 500px;
+        }
+        li {
+            /* height: 100%; */
+            padding: 15px;
+            width: 100%;
+            border: 2px solid green;
+            background-color: whitesmoke;
+            border-radius: 6px;
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+
+        }
+    </style>
+</head>
+<body>
+   <div class="container">
+    <input type="text" class="taskinput" placeholder="Enter any task">
+    <ul id="todo-list"></ul>
+   </div> 
+   <script>
+    let write = document.querySelector('.taskinput');
+    let todolist = document.getElementById('todo-list');
+    write.addEventListener('keydown', function(e){
+        if(e.key == "Enter"){
+            if(this.value.trim() !== '') {
+                addTodo(this.value);
+                this.value = '';
+            }
+        }
+    })
+    function addTodo(val){
+        
+        let list = document.createElement('li');
+        list.innerHTML = `${val}`;
+        todolist.append(list);
+
+        list.addEventListener('click', function(){
+            this.classList.toggle('done');
+        })
+    }
+   </script>
+</body>
+
+</html>
